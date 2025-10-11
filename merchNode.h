@@ -13,10 +13,12 @@ class MerchNode : public Merch {
     MerchNode();
     //Argument constructor
     MerchNode(const Merch & a_merch);
+    //Copy constructor
+    MerchNode(const MerchNode & merch_node);
     //This will set the current nodes next pointer to the node you pass in 
     void set_next( MerchNode * next);
     //This return the current nodes next pointers
-    MerchNode * get_next() const;
+    MerchNode *& get_next() ;
     //Displays all data members
     int display() const;
     

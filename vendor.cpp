@@ -63,7 +63,7 @@ Vendor::~Vendor() {
 
 }
 //This function will check if the user paid enough money, if they did it will return the change
-int Vendor::charge(int payment, double multiplier) {
+float Vendor::charge(int payment, double multiplier) {
 
     if(payment < price*multiplier)
         return -1;
@@ -83,4 +83,8 @@ int Vendor::display() const {
     cout << " Description: " << description << endl;
     cout << " Price: " << price << endl;
     return 1;
+}
+bool Vendor::display_title() const {
+    cout << title << endl;
+    return true;
 }

@@ -29,7 +29,7 @@ class Artist:public Vendor {
     int meet_greet(int payment);
     //This function will receive a random song name in main and pass it in
     //then in the function it will get a random track number and display it
-    int song_playing(const string & song_name) const;
+    bool album_announcement() const;
     //display all data members
     int display() const;
 

@@ -20,9 +20,11 @@ class Vendor {
 
     //This function will see if customer has enought money if so
     //returns change
-    int charge(int payment, double multiplier);
+    float charge(int payment, double multiplier);
     //Returns true if match found
     bool compare_title(const char * a_title);
+    //Displays only the title
+    bool display_title() const;
     //Display the contents 
     int display() const;
 

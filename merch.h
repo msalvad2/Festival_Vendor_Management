@@ -12,7 +12,7 @@ class Merch:public Vendor {
     public:
     Merch();
     Merch( const char* a_title, const string & a_description, int a_price, 
-    const string & a_merch_type,const string & a_item_name, int a_stock); //argument constructor
+    const string & a_merch_type, float a_discount, int a_stock); //argument constructor
     //Merch(const Merch & a_merch);//copy constructor
     //Merch& operator=(const Merch & a_merch); //assignment operator
     ~Merch();
@@ -20,7 +20,7 @@ class Merch:public Vendor {
     //This function will get the # of merch the user wants to buy from what the specific vendor
     //is selling (e.g five shirts, or seven posters);
     //Also if stock is less than specific # than apply discount(e.g 3 posters left, 20% discount)
-    int buy_merch(int quantity);
+    int buy_merch(int quantity, int payment);
 
     //This returns the total amount of merch that the specific vendor has (e.g five shirts left)
     //Also if stock is low then will apply a discount and promote that sale
@@ -28,7 +28,7 @@ class Merch:public Vendor {
 
     //This function will get the amount of merch the customer is wanting to sell, then buy it at a
     //70 percent, return the amount the customer made and update the new stock #
-    int sell_to_booth(int quantity);
+    float sell_to_booth(int quantity);
     
     //Display all private members
     int display();
@@ -38,7 +38,7 @@ class Merch:public Vendor {
     private:
 
     string merch_type;
-    string item_name;
+    float discount;
     int stock;
 
 };

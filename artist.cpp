@@ -104,3 +104,9 @@ int Artist::meet_greet(int payment) {
 
     return 1;
 }
+bool Artist::album_announcement() const {
+    cout << "On STAGE: " ;
+    Vendor::display_title();
+    cout <<"Welcome everyone the new album: " << album << " is about to play " <<endl; 
+    return true;
+}

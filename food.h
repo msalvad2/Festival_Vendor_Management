@@ -13,7 +13,7 @@ class Food:public Vendor {
     public:
     Food();//default constructor
     Food(const char* a_title, const string & a_description, int a_price,
-    const string & a_dish_name, const string & a_type_food, int calories); //argument constructor
+    const string & a_waiter_name, const string & a_type_food, int calories); //argument constructor
     //Food( const Food & a_food); //copy constructor// You don't need copy constructor since you don't have
                                                     //dynamic memory. The base class handles its own data members
     //Food& operator=(const Food & a_food);//assignment operator //You don't need assignment operated
@@ -25,15 +25,17 @@ class Food:public Vendor {
     int order_food(int quantity);
     //This would calculate the recommended tip percentageto leave based on how many
     //orders were purchased
-    int recommend_tip(int quantity);
+    float recommend_tip(int quantity);
     //This would take in the tip the customer chose and calculate the total tip based
     //on how much the food cost * the tip percentage.
-    int leave_tip( int tip_percent, int sub_total);
+    float total( float tip_percent, int sub_total);
+    //display all data members
+    int display() const;
 
     protected:
 
     private:
-    string dish_name;
+    string waiter_name;
     string type_food;
     int calories;
 
