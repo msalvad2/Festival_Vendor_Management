@@ -94,11 +94,11 @@ int List::display(ArtistNode * head) const {
 
     return 1;
 }
-bool List::find(const char * a_title) const {
+bool List::find(const char * a_title, Artist & a_artist) const {
 
-    return find(head, a_title);
+    return find(head, a_title, a_artist);
 }
-bool List::find(ArtistNode* head, const char * a_title) const {
+bool List::find(ArtistNode* head, const char * a_title, Artist & a_artist) const {
     if(!head){
         cout << "Could not find the artis: " << a_title << endl;
         return false; //No Match
@@ -106,7 +106,47 @@ bool List::find(ArtistNode* head, const char * a_title) const {
 
     if(head->compare_title(a_title)) {
         cout << "There was a match" << endl;
+        
+        a_artist = *head;
         return true;
     }
-    return find(head->get_next(), a_title);
+    return find(head->get_next(), a_title, a_artist);
 }
+
+
+
+
+
+
+/*j
+//Functions to find the specific node then perform the node functions
+
+int List::meet_greet_title(int payment) {
+    if(!head) {
+        cout << "List is Empty! " << endl;
+        return -1;
+    }
+    char name[100];
+
+    cout <<"Title of Artist: ";
+    cin.get(name, 100, '\n');
+    cin.ignore(100, '\n');
+
+    return meet_greet_title(head, name, payment);
+
+
+}
+int List::meet_greet_title(ArtistNode* head, const char* title, int payment) {
+    
+    if(!head) {
+            cout << "No Match" << endl;
+            return -1;
+    }
+    if(head->compare_title(title)) {
+            head->meet_greet(payment);
+            return 1;
+    }
+
+    return meet_greet_title(head->get_next(), title, payment);
+}
+*/

@@ -3,6 +3,7 @@
 //This will create the merch class inheriting the vendor class, its unique members are merch_type,
 //item_name, and stock. You will be able to buy merch, check how much of it is available,
 //You will be able to display and sell to the booth.
+
 #pragma once
 #include "vendor.h"
 #include <string>

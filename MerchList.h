@@ -1,5 +1,7 @@
 //
 
+#pragma once
+
 #include "merchNode.h"
 
 class C_list {
@@ -16,7 +18,7 @@ class C_list {
     //This will remove the first node(rear->next) but before it removes will copy the data over
     int dequeue( Merch & a_merch);
     //This Will find a node by title and return true if found
-    bool find_match( const char* a_title);
+    bool find_match( const char* a_title, Merch & a_merch);
     int peek(Merch & a_merch);
 
 
@@ -33,6 +35,6 @@ class C_list {
     //recursively display all nodes
     int display(MerchNode * head) const;
     //recursively traverse list until finds match else NOT MATCH
-    bool find_match( MerchNode* head, const char* a_title);
+    bool find_match( MerchNode* head, const char* a_title, Merch & a_merch);
 
 };

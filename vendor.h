@@ -2,7 +2,7 @@
 //Miguel Salvador | Program #1 | October 8, 2025
 //This .h file creates the base class Vendor which is the parent to all nodes
 
-
+#pragma once
 #include <iostream>
 #include <cctype>
 #include <cstring>
@@ -27,6 +27,8 @@ class Vendor {
     bool display_title() const;
     //Display the contents 
     int display() const;
+    //displays the price
+    float  display_cost(float multiplier) const;
 
     private:
     char  * title;

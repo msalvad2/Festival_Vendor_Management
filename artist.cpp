@@ -80,7 +80,7 @@ int Artist::display() const {
 }
 int Artist::request_song(const string & song, int  payment) {
 
-    int amount = Vendor::charge(payment, 0.1); //songs always cost 1/10 the base 
+    int amount = Vendor::charge(payment, 0.5*popularity); //songs always cost 1/10 the base 
     if( amount == -1) {
         cout << "Not enought money! " << endl;
         return 0;
@@ -108,5 +108,16 @@ bool Artist::album_announcement() const {
     cout << "On STAGE: " ;
     Vendor::display_title();
     cout <<"Welcome everyone the new album: " << album << " is about to play " <<endl; 
+    cout << "Duration of Album: " << duration << endl;
     return true;
+}
+//
+float Artist::display_cost( bool flag) const {
+    //pass in true if wanting to use song_req
+    if(flag)
+        return  Vendor::display_cost(popularity*.5);
+        //else false will use the meet_greet
+    else
+        return Vendor::display_cost(popularity);
+    
 }

@@ -78,7 +78,10 @@ bool Vendor::compare_title(const char * a_title) {
     return false;
 }
 int Vendor::display() const {
-
+    
+    if(!title) {
+        return -1;
+    }
     cout << " Title: " << title << endl;
     cout << " Description: " << description << endl;
     cout << " Price: " << price << endl;
@@ -87,4 +90,8 @@ int Vendor::display() const {
 bool Vendor::display_title() const {
     cout << title << endl;
     return true;
+}
+float Vendor::display_cost(float multiplier) const {
+    
+        return price*multiplier;
 }

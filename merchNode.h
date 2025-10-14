@@ -2,6 +2,7 @@
 //Miguel Salvador | Program #1 | October 8, 2025
 //This will declare the MerchNode which will inheret from the Merch
 //It will be used to create the Circular Linked list
+
 #pragma once
 
 #include "merch.h"

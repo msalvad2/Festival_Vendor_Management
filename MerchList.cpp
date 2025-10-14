@@ -117,18 +117,23 @@ int C_list::dequeue( Merch & a_merch) {
     return 1;
 }
 
-bool C_list::find_match(const char* a_title) {
+bool C_list::find_match(const char* a_title, Merch & a_merch) {
+    if(!rear) {
+        cout << "List is empty " << endl;
+        return false;
+    }
     
-    return find_match(rear->get_next(), a_title);    
+    return find_match(rear->get_next(), a_title, a_merch);    
 }
 
-bool C_list::find_match(MerchNode* head, const char* a_title) {
+bool C_list::find_match(MerchNode* head, const char* a_title, Merch & a_merch) {
 
     if(head == this->rear) {
         
     if(head->compare_title(a_title)) {
         cout << "Match Found: " << endl;
         head->Merch::display();//try with Merch::display()
+        a_merch = *head;
         return true;
     }
         cout << "No match found! " << endl;
@@ -137,10 +142,11 @@ bool C_list::find_match(MerchNode* head, const char* a_title) {
     if(head->compare_title(a_title)){
         cout << "Match Found: " << endl;
         head->Merch::display();//try with Merch::display()
+        a_merch = *head;
         return true;
     }
 
-    return find_match(head->get_next(), a_title);
+    return find_match(head->get_next(), a_title, a_merch);
 }
 
 

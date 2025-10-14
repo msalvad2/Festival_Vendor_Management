@@ -2,6 +2,7 @@
 //Miguel Salvador | Program #1 | October 8, 2025
 //This will declare the MerchArtist class which  inherets the Artist class.
 //It will be used in the Linear Linked List
+
 #pragma once
 
 #include "artist.h"

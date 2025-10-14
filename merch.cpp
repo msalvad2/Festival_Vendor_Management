@@ -28,26 +28,34 @@ int Merch::buy_merch(int quantity, int payment) {
         return 0;
     }
     int amount = 0;
-    if(stock < 6)
+    if(stock < 50)
         amount = Vendor::charge(payment, quantity * discount);
     else {
         amount =Vendor::charge(payment, quantity);
     }
+    if(amount == -1) {
+        cout << "Sorry not enough money to make purchase! " << endl;
+        return -1;
+    }
+    stock -= quantity;
     cout << "Thank you for shopping! Your total is: " << amount << endl;
 
-    return 1;
+    return amount;
     
 }
 int Merch::display() {
-    Vendor::display();
+    int num =Vendor::display();
+    if(num == -1)
+        return -1;
+
     cout << "Color: " << merch_type << endl;
-    cout << "Discount when low is 5 or less: " << discount << endl;
+    cout << "Discount when stock  is 50 or less: " << discount << endl;
     cout << "Current stock : " << stock << endl;
     return 1;
 
 }
 int Merch::check_availability() const {
-    if(stock < 6 ) {
+    if(stock < 50) {
     float num = 100 - (discount * 100);
     cout << "DISCOUNT IS NOW " << num << "%" << endl;
     }

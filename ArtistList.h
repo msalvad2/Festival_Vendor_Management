@@ -1,4 +1,5 @@
 //
+#pragma once
 
 #include "artistNode.h"
 
@@ -21,7 +22,10 @@ class List {
     int insert(const Artist & a_artist);
     int remove_title(const char * a_title);
     int display() const;
-    bool find(const char * a_title) const;
+    bool find(const char * a_title, Artist & a_artist) const;
+    //The functions below are to help get you in the right node when you call the nodes funtions
+    
+
 
 
     private:
@@ -33,7 +37,10 @@ class List {
     int insert(ArtistNode *& head, const Artist & a_artist);
     int remove_title(ArtistNode *& head, const char * a_title);
     int display(ArtistNode * head) const;
-    bool find(ArtistNode* head, const char * a_title) const;
+    bool find(ArtistNode* head, const char * a_title, Artist & a_artist) const;
+    //Functions to find the node to apply the node functions for
+    int meet_greet_title(ArtistNode * head, const char* title, int payment);
+
 
 
 };

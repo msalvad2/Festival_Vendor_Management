@@ -3,6 +3,7 @@
 //This declares the Food class which derives the parent Vendor, it's unique data members are
 // dish_name, type_food, and calories. The methods will allow the user to order food,
 //will recommend the customers a tip, and will calculate the total.
+
 #pragma once
 
 #include "vendor.h"

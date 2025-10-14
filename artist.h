@@ -1,7 +1,6 @@
 //artist sub-child LLL
 //Miguel Salvador | Program #1 | October 8, 2025
-//This will declare the Artist which represents a children of the vendor. It's data members are
-//duration, album, and popularity. It also declares the meet_greet, song_playing, request_song
+//This will declare the Artist which represents a children of the vendor. It's data members are //duration, album, and popularity. It also declares the meet_greet, song_playing, request_song
 // and dispay().
 
 #pragma once  //sets guards so you don't duplicate definishions when include the same header file
@@ -27,11 +26,11 @@ class Artist:public Vendor {
     //This function will receive the payment from the user and then subract 
     //how much it is to meet the artist  minus payment and return total
     int meet_greet(int payment);
-    //This function will receive a random song name in main and pass it in
-    //then in the function it will get a random track number and display it
+    //This function will give information about the album the artist is promoting
     bool album_announcement() const;
     //display all data members
     int display() const;
+    float display_cost(bool flag) const;
 
     protected:
     
