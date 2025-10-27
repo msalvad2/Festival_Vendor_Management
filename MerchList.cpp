@@ -1,4 +1,5 @@
-//
+//This declares the list implementation for Merch
+//Miguel Salvador | Program #1 | October 8, 2025
 #include "MerchList.h"
 
 //Default Constructor
@@ -6,8 +7,9 @@ C_list::C_list() : rear(nullptr)
 {}
 //copy constructor
 C_list::C_list(const C_list & a_list) : rear(nullptr) {
-
-    copy_all(rear, a_list.rear->get_next(), rear);
+    
+    if(a_list.rear)
+        copy_all(rear, a_list.rear->get_next(), a_list.rear);
 
 }
 //Assignment Operator
@@ -16,7 +18,7 @@ C_list& C_list::operator=(const C_list & a_list) {
    //this checks to see if memory address is same if so can returns either pointer
     if(this == &a_list)
         return *this;
-
+//
     remove_all(rear);
 
     copy_all(rear, a_list.rear->get_next(), a_list.rear);
@@ -35,7 +37,9 @@ C_list::~C_list() {
 //Third argument is source last node(rear) used as base case to know when reached end of list
 int C_list::copy_all(MerchNode *& dest, MerchNode * src, MerchNode * rear) {
     if(src == rear) {
+        dest = new MerchNode(*src);
         dest->set_next(this->rear);
+        this->rear = dest;
         return 1;
     }
     dest = new MerchNode(*src);
@@ -47,6 +51,7 @@ int C_list::remove_all(MerchNode *& head) {
     if(head == this->rear) {
         delete head;
         head = nullptr;
+        this->rear = nullptr;
         return 1;
     }
     MerchNode* hold = head->get_next();
@@ -116,7 +121,8 @@ int C_list::dequeue( Merch & a_merch) {
 
     return 1;
 }
-
+//Wrapper function
+//This function will find a match if true then copies the contents to the provided match
 bool C_list::find_match(const char* a_title, Merch & a_merch) {
     if(!rear) {
         cout << "List is empty " << endl;
@@ -125,7 +131,7 @@ bool C_list::find_match(const char* a_title, Merch & a_merch) {
     
     return find_match(rear->get_next(), a_title, a_merch);    
 }
-
+//this is the recursive call to find the match
 bool C_list::find_match(MerchNode* head, const char* a_title, Merch & a_merch) {
 
     if(head == this->rear) {
@@ -149,7 +155,7 @@ bool C_list::find_match(MerchNode* head, const char* a_title, Merch & a_merch) {
     return find_match(head->get_next(), a_title, a_merch);
 }
 
-
+//this copies the data into the argument, the first item
 int C_list::peek( Merch & a_merch) {
     if(!rear) {
         cout << "List is Empty! " << endl;
@@ -160,6 +166,72 @@ int C_list::peek( Merch & a_merch) {
     return 1;
 }
 
+
+
+//Wrapper removes all the list
+int C_list::remove_all() {
+    if(!rear) {
+        cout << "Can't Remove empty list" << endl;
+        return -1;
+    }
+    return remove_all(rear->get_next());
+}
+//This is the wrapper to remove by title
+int C_list::remove_by_title(const char* a_title) {
+   
+   if(!rear) {
+        cout << "List is empty " << endl;
+        return -1;
+   }
+   if(rear->get_next() == rear) {
+        delete rear;
+        rear = nullptr;
+        cout << "Successfully deleted the node " << endl;
+        return 1;
+
+   }
+
+    return remove_by_title(rear->get_next(), a_title);
+}
+//Recursive call to make to recursive through list and remove the node by title
+int C_list::remove_by_title(MerchNode*& head, const char* a_title) {
+   
+   if(head->get_next() == this->rear) {
+        
+        if(head->compare_title(a_title)) {
+            
+            MerchNode* hold = head->get_next();
+            delete head;
+            head = hold;
+            cout << "Succesfully delete the node! " << endl;
+            return 1;
+        }
+        if(head->get_next()->compare_title(a_title)) {
+            
+            MerchNode* hold = head->get_next()->get_next();
+            this->rear = head;
+            delete head->get_next();
+            head->set_next(hold);
+
+            cout <<"Succesfully deleted the node! " << endl;
+            return 1;
+
+
+        }
+        cout << "Could not find match! " << endl;
+        return -1;
+
+   }
+   if(head->compare_title(a_title)) {
+        MerchNode* hold = head->get_next();
+        delete head;
+        head = hold;
+        cout << "Succesfully delete the node! " << endl;
+        return 1;
+   }
+    
+    return remove_by_title(head->get_next(), a_title);
+}
 
 
 

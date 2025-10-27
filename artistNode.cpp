@@ -1,16 +1,18 @@
 
-
+//Miguel Salvador | Program #1 | October 8, 2025
+//Node for the child artist
 #include "artistNode.h"
 
+//default constructor
 ArtistNode::ArtistNode() : Artist(), next(nullptr)
 {}
 
 ArtistNode::ArtistNode(const Artist & a_artist) : Artist(a_artist), next(nullptr)
 {}
-
 ArtistNode::ArtistNode(const ArtistNode & source) 
     :Artist(source), next(nullptr)
 {}
+//this will set the local node to point to the node passed in
 void ArtistNode::set_next( ArtistNode *& next) {
 
     this -> next = next;

@@ -1,5 +1,6 @@
 //
-
+//Miguel Salvador | Program #1 | October 8, 2025
+//This
 #pragma once
 
 #include "merchNode.h"
@@ -20,6 +21,10 @@ class C_list {
     //This Will find a node by title and return true if found
     bool find_match( const char* a_title, Merch & a_merch);
     int peek(Merch & a_merch);
+    //This will remove the entire list
+    int remove_all();
+    //This will remove by the title
+    int remove_by_title(const char* title);
 
 
     private:
@@ -36,5 +41,8 @@ class C_list {
     int display(MerchNode * head) const;
     //recursively traverse list until finds match else NOT MATCH
     bool find_match( MerchNode* head, const char* a_title, Merch & a_merch);
+    //Recursive call to delete by title
+    int remove_by_title(MerchNode*& head, const char* a_title);
+
 
 };

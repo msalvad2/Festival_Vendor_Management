@@ -6,19 +6,20 @@
 
 Food::Food() : Vendor(), waiter_name(""), type_food(""), calories(0)
 {}
-
+//Food constructor
 Food::Food(const char * a_title, const string & a_description, int a_price,
 const string & a_waiter_name, const string & a_type_food, int a_calories) 
 : Vendor(a_title, a_description, a_price),
 waiter_name(a_waiter_name), type_food(a_type_food), calories(a_calories) 
 {}
-
+//Food destructor
 Food::~Food() {
     waiter_name = "";
     type_food = "";
     calories = 0;
 
 }   
+//This displays the food contents
 int Food::display() const {
     Vendor::display();
     cout << "Waiter name: " << waiter_name << endl;
@@ -27,6 +28,7 @@ int Food::display() const {
 
     return 1;
 }
+//Allows users to order 
 int Food::order_food(int quantity) {
     cout << " My name is " << waiter_name << " I'll be taking your orders today" << endl;
     float amount = Vendor::charge(10000, quantity);
@@ -36,7 +38,11 @@ int Food::order_food(int quantity) {
 
     return total;
 }
+//Recommends tip based on number of orders
 float Food::recommend_tip(int quantity) {
+
+    int total_calories = calories * quantity;
+    cout << "Total calories for order: " << total_calories << endl;
 
     if(quantity < 3)
         cout << "Recommended tip: 12 %" << endl;
@@ -44,6 +50,7 @@ float Food::recommend_tip(int quantity) {
         cout << "Recommended tip: 24 %" << endl;
     else
         cout << "Recommended tip: 16 %" << endl;
+
     
     float tip;
     cout << "Tip %";
@@ -52,6 +59,7 @@ float Food::recommend_tip(int quantity) {
 
     return tip/100;
 }
+//calculates total based on tip and subtotal
 float Food::total( float tip_percent, int sub_total) {
     float tip = tip_percent * sub_total;
     float sum = tip + sub_total;

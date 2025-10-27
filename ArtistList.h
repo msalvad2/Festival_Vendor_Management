@@ -1,4 +1,5 @@
-//
+//Miguel Salvador | Program #1 | October 8, 2025
+//This will declare the Artist list which will be the list containing the artist node
 #pragma once
 
 #include "artistNode.h"
@@ -23,6 +24,7 @@ class List {
     int remove_title(const char * a_title);
     int display() const;
     bool find(const char * a_title, Artist & a_artist) const;
+    int remove_all();
     //The functions below are to help get you in the right node when you call the nodes funtions
     
 

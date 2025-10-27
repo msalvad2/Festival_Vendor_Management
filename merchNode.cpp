@@ -1,4 +1,5 @@
 //
+//Miguel Salvador | Program #1 | October 8, 2025
 
 #include "merchNode.h"
 

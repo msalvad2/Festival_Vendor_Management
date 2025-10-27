@@ -9,7 +9,7 @@
 #include <vector> //STL library will give me access to the vectors
 
 using namespace std;
-
+//This function will check if the number the user provided is valid
 int num_check(int low, int high, int & num) {
     while(num > high || num < low) {
         cout <<"Please choose a number between " << low << " - " << high << endl;
@@ -19,7 +19,7 @@ int num_check(int low, int high, int & num) {
     }
     return num;
 }
-
+//This will ask the user if they want to work with the list or the data members of the class (e.g Artist)
 int list_or_node(int & num, string & name) {
     cout <<"Do you want to work with: " << endl;
     cout << " 1. " << name << "List functions" << endl <<
@@ -32,19 +32,20 @@ int list_or_node(int & num, string & name) {
 }
 
 int main() {
-
+    
+    //Predefined class data types user will work with
     Artist artist("Bad Bunny", "Cool guy", 10, 2, "Un Verano Sin Ti", 5);
     Merch merch("Shirts", "Comfy and Flexible", 10,"Clothing",  .8, 60);
     Food food("Salvo's Restaurant", "Tasty & Friendly" , 2, "Bob", "Tacos", 100);
-
+    //Created empty list the user can add and remove from
     List ArtistList;
     C_list MerchList;
-    vector <Food> FoodList(20);
+    vector <Food> FoodList;
 
     int choice{0};
 
     cout <<"What would you like to work with: " << endl;
-    cout <<"1). Artist (LLL)| 2. Merch (CLL)| 3. Food (Vecto)" << endl;
+    cout <<"1). Artist (LLL)| 2. Merch (CLL)| 3. Food (Vector)" << endl;
     cout << "Choice: ";
     cin >> choice;
     cin.ignore(100, '\n');
@@ -62,12 +63,13 @@ int main() {
             char option;
 
             do{ cout <<"a). Insert Artist b). Remove Artist c). Find Artist " <<
-                "d).Display all artists q).Quit" << endl;
+                "d).Display all artists e). Remove all arists q).Quit" << endl;
                 cin>> option;
                 cin.ignore(100, '\n');
 
                 switch(option) 
                 {
+                    //Adds artist to the beginning of the list
                     case 'a': {
                                   char name[100];
                                   string description;
@@ -105,6 +107,7 @@ int main() {
 
                               }
                               break;
+                              //Removes an artist using the title
                     case 'b': {
                                   char name[100];
                                   cout << "The Artist Name: ";
@@ -115,7 +118,9 @@ int main() {
 
                               }
                               break;
+                              //finda an artist then displays information if found was succesful
                     case 'c': {
+                        
                                   char name[100];
                                   cout << "The Artist Name: ";
                                   cin.get(name, 100, '\n');
@@ -130,13 +135,17 @@ int main() {
 
                               }
                               break;
-
+                            //Displays all artist in the list
                     case 'd': {
                                   ArtistList.display();
 
                               }
                               break;
-
+                    case 'e': {
+                        int num = ArtistList.remove_all();
+                        if(num == 1)
+                            cout << "Successfully remove all Artists! " << endl;
+                    }
 
                 }
 
@@ -152,7 +161,7 @@ int main() {
                 cin >>option;
                 cin.ignore(100, '\n');
                 switch(option) {
-
+                    // This will let the user request then calculate how much it is
                     case 'a': {
                                   string song;
                                   int money;
@@ -170,6 +179,7 @@ int main() {
 
                               }
                               break;
+                    //This will allow the user to meet and greet the artist it will calculate costs
                     case 'b': {
                                   float price{0};
                                   int money{0};
@@ -184,6 +194,7 @@ int main() {
                                   artist.meet_greet(money);
                               }
                               break;
+                            //T 
                     case 'c': {
                                   artist.album_announcement();
                               }
@@ -217,7 +228,7 @@ int main() {
 
         if(num == 1) {
             do{ cout <<"a). Insert Merch  (Enqueue) b). Remove Merch (Dequeue) c). Find Merch " <<
-                "d).Display all Merch  e). Peek q).Quit" << endl;
+                "d).Display all Merch  e). Peek f). Remove all Merch g). Remove by title q).Quit" << endl;
                 cin>> option;
                 cin.ignore(100, '\n');
 
@@ -300,8 +311,25 @@ int main() {
                                       cout << "The merch peeked: " << endl;
 
                                   peeked_merch.display();
+                    }
+                    case 'f': {
+                                int num = MerchList.remove_all();
+                                if(num == 1) 
+                                    cout <<"Successfully removed all merch" << endl;
 
                               }
+                    break;
+
+                    case 'g': {
+
+                            char name[100];
+
+                            cout << "Name of merch: ";
+                            cin.get(name, 100, '\n');
+
+                            MerchList.remove_by_title(name);
+                    }
+                    break;
 
 
                 }//switch
@@ -376,7 +404,7 @@ int main() {
         list_or_node(num, name);
         if(num == 1) {
 
-            do{ cout <<"a). Insert Food  b). Remove Food  c). Find Food " <<
+            do{ cout <<"a). Insert Food  b). Remove Last Food  c). Remove all Foods " <<
                 "d).Display all Foods  q).Quit" << endl;
                 cin>> option;
                 cin.ignore(100, '\n');
@@ -416,7 +444,27 @@ int main() {
                                   //Efficiency is O(1) on average
                               }
                     break;
+                    case 'b': {
+                                FoodList.pop_back();
 
+                    }
+                    case 'c': {
+                        FoodList.clear();
+                        }
+                    break;
+                    
+                    case 'd': {
+                        
+                        int length = FoodList.size();
+
+                        for(int i = 0; i < length; ++i) {
+                            
+                            FoodList[i].display();
+
+                        }
+
+                    }
+                    break;
 
 }
             }while(option != 'q');
@@ -446,7 +494,6 @@ int main() {
                                   
                                   actual_tip = food.recommend_tip(num);
 
-                                  cin.ignore(100, '\n');
 
                                   food.total(actual_tip, cost);
 

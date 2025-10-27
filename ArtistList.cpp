@@ -1,4 +1,5 @@
 //
+//Miguel Salvador | Program #1 | October 8, 2025
 
 #include "ArtistList.h"
 
@@ -9,6 +10,7 @@ List::List(const List & old_list) : head(nullptr) {
      copy_list(head, old_list.head);
     
 }
+//This function will handle operator assignment
 List& List::operator=(const List & old_list) {
     
     if(this == &old_list)
@@ -20,11 +22,13 @@ List& List::operator=(const List & old_list) {
     return *this;
 
 }
+//This will deallocate everything
 List::~List(){
 
    delete_all(head); 
 
 }
+//This is the recursive call to copy everything from one LLL to another
 int List::copy_list(ArtistNode*& dest, ArtistNode* src) {
    if(!src) {
        dest = nullptr;//finalizes the end of the new list
@@ -34,7 +38,7 @@ int List::copy_list(ArtistNode*& dest, ArtistNode* src) {
 
    return copy_list(dest->get_next(), src->get_next() );
 }
-
+//This will delete all the dynamic mememory in the list
 int List::delete_all(ArtistNode*& head) {
     if(!head) return 1;
 
@@ -80,10 +84,11 @@ int List::remove_title(ArtistNode *& head, const char * a_title) {
     return remove_title(head->get_next(), a_title);
 }
 
-
+//Wrapper to display all
 int List::display() const{
     return display(head);
 }
+//Recursive call to display all
 int List::display(ArtistNode * head) const {
     
     if(!head) return 1;
@@ -94,10 +99,12 @@ int List::display(ArtistNode * head) const {
 
     return 1;
 }
+//This will find a mach wrapper 
 bool List::find(const char * a_title, Artist & a_artist) const {
 
     return find(head, a_title, a_artist);
 }
+//This will find a mach recursive call by comparing title
 bool List::find(ArtistNode* head, const char * a_title, Artist & a_artist) const {
     if(!head){
         cout << "Could not find the artis: " << a_title << endl;
@@ -112,7 +119,15 @@ bool List::find(ArtistNode* head, const char * a_title, Artist & a_artist) const
     }
     return find(head->get_next(), a_title, a_artist);
 }
+//This is the wrapper to delete all the nodes manually
+int List::remove_all() {
+    if(!head){
+        cout <<"Empty List can't remove! " << endl;
+        return -1;
+    }
 
+return delete_all( head);
+}
 
 
 

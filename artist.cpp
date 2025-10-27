@@ -67,7 +67,7 @@ Artist::~Artist(){
     duration = 0;
     popularity = 0;
 }
-
+//This function displays artist members
 int Artist::display() const {
 
     Vendor::display();
@@ -78,6 +78,7 @@ int Artist::display() const {
     return 1;
 
 }
+//This will get a song request from the user and a payment to display it
 int Artist::request_song(const string & song, int  payment) {
 
     int amount = Vendor::charge(payment, 0.5*popularity); //songs always cost 1/10 the base 
@@ -90,6 +91,7 @@ int Artist::request_song(const string & song, int  payment) {
 
     return 1;
 }
+//user will get a payment from user to meet the artist
 int Artist::meet_greet(int payment) {
     
     int amount = Vendor::charge(payment, popularity);
@@ -104,6 +106,7 @@ int Artist::meet_greet(int payment) {
 
     return 1;
 }
+//This will announce the album the audience
 bool Artist::album_announcement() const {
     cout << "On STAGE: " ;
     Vendor::display_title();
